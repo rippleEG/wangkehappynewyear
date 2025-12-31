@@ -1,0 +1,99 @@
+
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>新年快乐！</title>
+    <style>
+        body { 
+            margin: 0; 
+            /* ✨ 背景：淡淡的薄荷绿 */
+            background: #e8f5e9; 
+            
+            /* ✨ 正文文字：深森林绿，清晰且护眼 */
+            color: #2e7d32; 
+            
+            text-align: center; 
+            font-family: 'Microsoft YaHei', sans-serif; 
+            height: 100vh; 
+            display: flex; 
+            flex-direction: column; 
+            justify-content: center; 
+            align-items: center; 
+        }
+        .container { z-index: 10; cursor: pointer; }
+        img { 
+            width: 200px; 
+            height: 200px; 
+            border-radius: 50%; 
+            border: 5px solid #ffffff; 
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08); 
+            margin-bottom: 20px;
+            
+            /* ✨ 修复比例失调：自动裁剪并居中 */
+            object-fit: cover;
+            object-position: center;
+        }
+        
+        h1 { 
+            font-size: 2.8em; 
+            /* ✨ 标题颜色：更有活力的鲜绿 */
+            color: #1b5e20; 
+            margin: 10px 0;
+            text-shadow: 1px 1px 2px rgba(255,255,255,0.8);
+        }
+        
+        p { 
+            font-size: 1.2em;
+            font-weight: bold;
+            color: #388e3c;
+        }
+
+        .hint { 
+            font-size: 0.9em; 
+            /* ✨ 提示框文字：柔和的绿色 */
+            color: #ffffff; 
+            margin-top: 30px; 
+            background: #66bb6a; /* 翠绿色气泡 */
+            padding: 10px 25px; 
+            border-radius: 30px; 
+            box-shadow: 0 4px 15px rgba(102, 187, 106, 0.2);
+        }
+    </style>
+</head>
+<body>
+    <audio id="myAudio" src="张真源 - 镜花水月.mp3" loop></audio>
+
+    <div class="container" onclick="startShow()">
+        <img src="zhangzhenyuan.jpg" alt="点击开启惊喜">
+        <h1>2026 新年快乐</h1>
+        <p>祝 张真源最可爱的小粉丝 新的一年和偶像一样超级无敌强强强</p>
+        <div class="hint">🌸 点击照片 开启惊喜 🌸</div>
+    </div>
+    
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+    <script>
+        function startShow() {
+            document.getElementById('myAudio').play();
+            
+            // ✨ 烟花颜色：深浅不一的绿色 + 金色 + 白色
+            var colors = ['#a5d6a7', '#4caf50', '#ffffff', '#ffd700'];
+            
+            confetti({ 
+                particleCount: 150, 
+                spread: 100, 
+                origin: { y: 0.6 },
+                colors: colors
+            });
+
+            var end = Date.now() + (2 * 1000);
+            (function frame() {
+                confetti({ particleCount: 2, angle: 60, spread: 55, origin: { x: 0 }, colors: colors });
+                confetti({ particleCount: 2, angle: 120, spread: 55, origin: { x: 1 }, colors: colors });
+                if (Date.now() < end) { requestAnimationFrame(frame); }
+            }());
+        }
+    </script>
+</body>
+</html>
